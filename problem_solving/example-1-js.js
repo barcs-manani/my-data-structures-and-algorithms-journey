@@ -2,6 +2,7 @@
 // find pair that adds up to a sum
 // eg [1, 2, 4, 4] => find pair that adds up to 8 and return true if found
 
+// Brute force solution - Depends on whether the pairs are next to each other
 function findPairSum(arr, sum){
     for (let i = 0; i < arr.length - 2; i++) { // O(1)
         const val1 = arr[i]; // O(n)
@@ -22,9 +23,26 @@ function findPairSum(arr, sum){
     return false;
 };
 
-const array = [1, 4, 5, 6];
+const array = [1, 4, 5, 4];
 const sum = 8;
-findPairSum(array, sum);
+// findPairSum(array, sum);
 
 // Space complexity = O(n)
 // Time complexity = O(n)
+
+// Say the pairs are not sorted - We need a hash table for this
+function findPairSum2 (arr, sum) {
+    let map = {};
+    for (let i = 0; i < arr.length; i++) {
+        const minusVal = sum - arr[i];
+        if (map[arr[i]]) {
+            console.log("Values found:" + minusVal + ", " + arr[i]);
+            return true;
+        }
+        map[minusVal] = true;
+    }
+    console.log("No values found!");
+    return false;
+}
+
+findPairSum2(array, sum);
