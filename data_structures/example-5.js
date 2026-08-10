@@ -84,6 +84,7 @@ class LinkedList {
         const leaderNode = this.lookup(index - 1);
         const removalNode = leaderNode.next;
         leaderNode.next = removalNode.next;
+        this.length--;
         return this.printList();
     }
 }
