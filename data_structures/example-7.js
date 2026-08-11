@@ -35,6 +35,8 @@ class Stack {
     // remove node from top of stack
     pop() {
         if (!this.top) return null;
+        if (this.top === this.bottom)
+            this.bottom = null;
         const newTop = this.top.next;
         this.top = newTop;
         this.length--;
