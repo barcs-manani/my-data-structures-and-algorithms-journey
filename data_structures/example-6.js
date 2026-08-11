@@ -100,7 +100,7 @@ class LinkedList {
             throw new Error("ValueError: Invalid index data type;");
         }
 
-        const leaderNode = this.forward_lookup(index - 1);
+        const leaderNode = this.forward_lookup(index);
         if (index === this.length - 1 || leaderNode.next === null) {
             const last = leaderNode.prev;
             last.next = null

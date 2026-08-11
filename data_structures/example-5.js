@@ -83,7 +83,8 @@ class LinkedList {
             console.error("ValueError: Invalid index data type;")
             throw new Error("ValueError: Invalid index data type;");
         }
-        const leaderNode = this.lookup(index - 1);
+
+        const leaderNode = this.lookup(index);
         const removalNode = leaderNode.next;
         leaderNode.next = removalNode.next;
         this.length--;
