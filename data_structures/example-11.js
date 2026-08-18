@@ -211,18 +211,25 @@ function traversePostOrder(node, list) {
 }
 
 function validBST(node) {
-    if (node.left) {
-        if (node.left.value > node.value)
-            return false;
-        validBST(node.left);
-    }
+    let currentNode = node;
+    let queue = [];
+    queue.push(currentNode);
 
-    if (node.right) {
-        if (node.right.value < node.value)
-            return false;
-        validBST(node.right);
+    while (queue.length > 0) {
+        currentNode = queue.shift();
+        if (currentNode.left) {
+            if (currentNode.left.value > currentNode.value) {
+                return false;
+            }
+            queue.push(currentNode.left);
+        }
+        if (currentNode.right) {
+            if (currentNode.right.value < currentNode.value) {
+                return false;
+            }
+            queue.push(currentNode.right);
+        }
     }
-
     return true;
 }
 
@@ -234,13 +241,13 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-tree.lookup(20);
+// tree.lookup(20);
 // console.log(tree.DFSIorder());
 // console.log(tree.DFSPreorder());
 // console.log(tree.DFSPostorder());
 // console.log(tree.breadthFirstSearch(9));
 // console.log(tree.breadthFirstSearchR([tree.root], []));
-console.log("Valid BST: ", validBST(tree.root));
+// console.log("Valid BST: ", validBST(tree.root));
 // console.log("Tree: ", tree);
 // const funcTree = JSON.stringify(traverse(tree.root));
 // console.log(funcTree);
@@ -252,32 +259,34 @@ console.log("Valid BST: ", validBST(tree.root));
 //     return newTree;
 // }
 
-// {
-//     "value": 9,
-//     "left": {
-//         "value": 4,
-//         "left": {
-//             "value": 1,
-//             "left": null,
-//             "right": null
-//         },
-//         "right": {
-//             "value": 6,
-//             "left": null,
-//             "right": null
-//         }
-//     },
-//     "right": {
-//         "value": 20,
-//         "left": {
-//             "value": 15,
-//             "left": null,
-//             "right": null
-//         },
-//         "right": {
-//             "value": 170,
-//             "left": null,
-//             "right": null
-//         }
-//     }
-// }
+const testBST = {
+    "value": 9,
+    "left": {
+        "value": 4,
+        "left": {
+            "value": 1,
+            "left": null,
+            "right": null
+        },
+        "right": {
+            "value": 6,
+            "left": null,
+            "right": null
+        }
+    },
+    "right": {
+        "value": 20,
+        "left": {
+            "value": 15,
+            "left": null,
+            "right": null
+        },
+        "right": {
+            "value": 170,
+            "left": null,
+            "right": null
+        }
+    }
+};
+
+console.log("Valid BST: ", validBST(testBST));
